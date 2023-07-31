@@ -15,3 +15,7 @@ Also present, but only retained for historical reference:
 The original document is in docs, TN301 from the NOAA/NWS/NCEP Environmental Modeling Center, Marine Modeling and Analysis Branch
 
 Robert Grumbine
+
+
+[![DOI](https://zenodo.org/badge/672566759.svg)](https://zenodo.org/badge/latestdoi/672566759)
+
