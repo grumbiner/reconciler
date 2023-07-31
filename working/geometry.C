@@ -1,7 +1,9 @@
 //////////////////#include "gshhs.h"
 #include "ncepgrids.h"
 
-#define BCOUNT_LIM 1.5e5
+// This limits depth of recursion 
+#define BCOUNT_LIM 1.3e5
+
 // 19 August 2003  Robert Grumbine
 
 ///////////////// Geometric routines
@@ -206,7 +208,7 @@ void boundaryFill(const int x, const int y, const unsigned char fill,
 
   #ifdef VERBOSE
   if ( (bcount % 1000) == 0 && bcount > 41000 ) {
-    sprintf(fname,"tmp%d.xpm",bcount/freq);
+    snprintf(fname,799, "tmp%d.xpm",bcount/freq);
     field.xpm(fname, 1, gg);
   }
   if (bcount > 41000) printf("bcount = %d\n",bcount); fflush(stdout);
@@ -329,7 +331,7 @@ void boundaryFill(const int x, const int y, const unsigned char fill,
     return;
   }
  
-  if ( (field[x+y* field.xpoints()] == undef) ) {
+  if ( field[x+y* field.xpoints()] == undef ) {
     field[x+y* field.xpoints()] = fill;
     boundaryFill(x+1, y, fill, boundary, undef, field);
     boundaryFill(x, y+1, fill, boundary, undef, field);

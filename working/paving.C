@@ -59,7 +59,7 @@ int main(int argc, char *argv[]) {
 
   latpt central;
   unsigned char boundary = 1, land = 5, water = 17, ocean = 15, undef = 3;
-  unsigned char paved = 13, final_ocean = 16;
+  unsigned char final_ocean = 16;
 
   ijpt loc;
   fijpt floc;
@@ -166,9 +166,10 @@ int main(int argc, char *argv[]) {
 // Now conduct the fill from the central point:
   floc = outbathy.locate(central);
   loc = floc;
-  printf("initial point is at %d %d\n",loc.i, loc.j);
   x = loc.i; y = loc.j;
+  printf("initial point is at %d %d\n",loc.i, loc.j); fflush(stdout);
   newFill(x, y, final_ocean, boundary, outmask);
+  printf("back from newFill\n"); fflush(stdout);
 
   // Loop through looking for points adjacent to final_ocean which are
   //  not boundary and fill those:
@@ -310,7 +311,7 @@ void newFill(const int x, const int y, const unsigned char fill,
     return;
   }
 
-  //if (filled % 5000 == 0) { printf("filled = %d\n",filled); }
+  //debug: if (filled % 1 == 0) { printf("bcount %d filled = %d xy = %d %d\n",bcount, filled,x, y); fflush(stdout); }
 
   if ( (field[x+y* field.xpoints()] != boundary) &&
        (field[x+y* field.xpoints()] != fill)        ) {

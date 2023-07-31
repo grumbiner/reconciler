@@ -23,5 +23,11 @@ refill : refill.C geometry.C makefile
 bathy : bathy.C
 	$(CC) $(CFLAGS) $< -DTARGET=$(TARGET) -I$(INCDIR) -o $(@) mmablib/libombf_4.a
 
+toab : toab.C
+	$(CC) $(CFLAGS) $< -DTARGET=$(TARGET) -I$(INCDIR) -o $(@) mmablib/libombf_4.a
+
 paving : paving.C geometry.C
 	$(CC) $(CFLAGS) $< -DTARGET=$(TARGET) -I$(INCDIR) -DRESOPS=$(RESOPS) -o $(@) mmablib/libombf_4.a
+
+distclean :
+	rm refill bathy paving paveout bathyout fout
